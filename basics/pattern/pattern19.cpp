@@ -2,53 +2,58 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void print(int n)
+void printPattern(int n)
 {
-    int i, j, k;
-    char ch;
-    for (i = 1; i < n; i++)
+    // Upper half (including middle row)
+    for (int i = 0; i < n; i++)
     {
-        for (j = 1; j <= n - i; j++)
-        {
-            cout << '*';
-        }
-        for (j = 1; j < i; j++)
-        {
-            cout << "  ";
-        }
-        for (j = 1; j <= n - i; j++)
-        {
-            cout << '*';
-        }
-        if(i==n) break;
+        int spaces = 2 * i;
+
+        // Left stars
+        for (int j = 0; j < n - i; j++)
+            cout << "*";
+
+        // Middle spaces
+        for (int j = 0; j < spaces; j++)
+            cout << " ";
+
+        // Right stars
+        for (int j = 0; j < n - i; j++)
+            cout << "*";
+
         cout << endl;
     }
-    for (i = 1; i < n; i++)
+
+    // Lower half (excluding middle row)
+    for (int i = 1; i < n; i++)
     {
-        for (j = 1; j <= i; j++)
-        {
-            cout << '*';
-        }
-        for (j = 1; j < n-i; j++)
-        {
-            cout << "  ";
-        }
-        for (j = 1; j <= i; j++)
-        {
-            cout << '*';
-        }
+        int spaces = 2 * (n - i - 1);
+
+        // Left stars
+        for (int j = 0; j <= i; j++)
+            cout << "*";
+
+        // Middle spaces
+        for (int j = 0; j < spaces; j++)
+            cout << " ";
+
+        // Right stars
+        for (int j = 0; j <= i; j++)
+            cout << "*";
+
         cout << endl;
     }
 }
 
 int main()
 {
-    int t;
+    int n;
     cout << "Input an Integer N = ";
-    cin >> t;
-    print(t);
+    cin >> n;
+    printPattern(n);
     return 0;
 }
+
 
 /*
 OUTPUT
