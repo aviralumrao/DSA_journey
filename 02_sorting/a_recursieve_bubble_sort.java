@@ -1,11 +1,16 @@
+
 // Given an array of N integers, write a program to implement the Recursive Bubble Sort algorithm.
-import java.util.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class a_recursieve_bubble_sort {
 
-    public static void bubbleSort(int[] arr, int n) {
+    public static int[] bubbleSort(int[] arr, int n) {
         if (n == 1) {
-            return;
+            return arr;
         }
 
         for (int i = 0; i < n - 1; i++) {
@@ -16,24 +21,32 @@ public class a_recursieve_bubble_sort {
             }
         }
 
-        bubbleSort(arr, n - 1);
+        return bubbleSort(arr, n - 1);
     }
 
-    void main() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter the number of elements: ");
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(new File("input.txt"));
+        PrintWriter out = new PrintWriter(new FileWriter("output.txt"));
+
+        if (!sc.hasNextInt()) {
+            sc.close();
+            out.close();
+            return;
+        }
+
         int n = sc.nextInt();
         int[] arr = new int[n];
-        System.out.println("Enter the elements:");
         for (int i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
         }
 
-        bubbleSort(arr, n);
+        int[] sortedArr = bubbleSort(arr, n);
 
-        System.out.println("Sorted array:");
-        for (int i : arr) {
-            System.out.print(i + " ");
+        for (int i = 0; i < n; i++) {
+            out.print(sortedArr[i] + (i < n - 1 ? " " : ""));
         }
+
+        out.close();
+        sc.close();
     }
 }
